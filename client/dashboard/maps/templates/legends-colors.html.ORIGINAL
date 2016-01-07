@@ -1,0 +1,272 @@
+{% import "nunjucks-macros.html" as macros %}
+{% set numNullValues = countGeometries - count %} 
+
+
+
+<div class="row" style="padding-left: 15px; padding-right: 15px;">
+    <div class="col-sm-10 col-sm-offset-1" style="border-style:solid; border-radius: px; border-width: 1px; border-color: rgb(228, 228, 228);   padding: 20px 40px; margin-bottom: 50px; margin-top: 20px;">
+
+        <p><b>Data overview:</b></p>
+        {% if dataType == "int" or dataType == "real" %}
+
+        <ul style="margin-bottom: 10px; padding-left: 30px;">
+            <li>count: {{ count }} (number of not null values)</li>
+            <li>minimum value: {{ min }}</li>
+            <li>maximum value: {{ max }}</li>
+        </ul>
+
+        {% elif dataType == "char" %}
+
+            {% if distinctWords %}
+
+            <ul style="margin-bottom: 10px; padding-left: 30px;">
+                <li><b>Count:</b> {{ count }} (number of not null values)</li>
+                <li><b>Distinct words:</b></li>
+                <ul>
+                    {% for word in distinctWords %}
+                    <li>
+                        {% if word == undefined %}
+                            <em style="color: gray;">NULL</em>
+                        {% else %}
+                            {{ word }}
+                        {% endif %}
+                        
+                    </li>
+                    {% endfor %}                
+                </ul>
+            </ul>
+
+            {% else  %}
+
+            <ul style="margin-bottom: 10px; padding-left: 30px;">
+                <li><b>Count:</b> {{ count }} (number of not null values)</li>
+                <li><b>Distinct words:</b> too many, sorry! (the column must have at most 12 distinct words to be used in a legend, because the color scales have at most 12 colors)</li>
+            </ul>
+
+            {% endif %}
+
+        {% endif %}
+
+
+
+        {% if scale != false %}
+
+        <p><b>Color classes:</b></p>
+
+        <div  style="padding-left: 15px;">
+        <table class="table table-bordered">
+
+            <thead>
+                <tr>
+                    <th  style="width: 25%" class="text-center">
+                        
+                    </th >
+                    <th  style="width: 25%" class="text-center">
+                        
+                    </th >
+
+                    <th  style="width: 30%" class="text-center">
+                        color
+                    </th>
+
+                    <th  style="width: 20%; padding: 4px 12px 4px 12px;" class="text-center">
+                        color (hex code)
+                    </th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                
+                {% for class in scale %}
+
+                <tr>
+                    <td class="text-center">
+                        
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <input type="text" id="left-extreme-{{loop.index}}" class="form-control js-classes-left-extreme" value="{{ class.valueClass[0] }}">
+                        </div>
+
+                    </td>
+
+                    <td class="text-center">
+
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <input type="text" id="right-extreme-{{loop.index}}" class="form-control js-classes-right-extreme" value="{{ class.valueClass[1] }}">
+                        </div>
+
+                    </td>
+
+                    <td class="text-center" style="background-color: {{ class.colorHex }}; border: solid 1px rgb(215, 215, 215);">
+                        &nbsp;
+                    </td>
+
+                    <td class="text-center">
+
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <input type="text" class="form-control my-color-picker" value="{{ class.colorHex }}">
+                        </div>
+
+                        {#<input type="text" value="{{ class.colorHex }}" class="my-color-picker">#}
+                    </td>
+
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+        </div>
+
+        <p><b>Color adjustments:</b></p>
+
+        <div style="padding-left: 15px;" class="checkbox">
+          <label>
+            <input type="checkbox" value="" id="js-invert-colors" {{ "checked" if invertColors }}>
+            Invert order
+          </label>
+        </div>
+
+        <div style="padding-left: 15px;">
+            <p style="display: inline-block; margin-right: 10px;">Lightness:</p>
+            <div  class="btn-group" role="group">
+                <button type="button" class="btn btn-default" id="js-darken-colors">Darker</button>
+                <button type="button" class="btn btn-default" id="js-brighten-colors">Brigther</button>
+            </div>
+        </div>
+        
+        <div style="padding-left: 15px; margin-top: 10px;">
+            <p style="display: inline-block; margin-right: 6px;">Saturation:</p>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default" id="js-desaturate-colors">Desaturate</button>
+                <button type="button" class="btn btn-default" id="js-saturate-colors">Saturate</button>
+            </div>   
+        </div>
+
+        <hr>
+
+        <p>
+            Copy-paste the following two blocks to the 
+            <a target="_blank" href="/pt/tilemill#/project/{{ mapId }}">
+                {{ mapName }} 
+                <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+            </a> 
+            map settings:
+        </p>
+
+
+        <div class="row">
+        
+            <div class="col-sm-9">
+                <p style="margin-top: 15px; margin-bottom: 0px; display: inline-block;"><b>1) CartoCSS</b></p><span style="font-size: 90%;">&nbsp; (paste at the bottom of the "main-style.mss" settings)</span>
+            </div>
+            <div class="col-sm-3">
+                <button type="button" class="pull-right btn btn-block btn-default js-select-code" id="code-carto-0">
+                    Select  &nbsp;
+                    <span class="glyphicon glyphicon-copy"></span>
+                </button>
+            </div>
+
+            <div class="col-sm-12">
+                <pre style="margin-top: 4px;"><code id="js-carto-0" class="language-css">
+                    {{ macros.getCartoCode(scale, tableName, columnName, geometryTypePrimitive, dataType) | trim }}
+                </code></pre>
+            </div>
+
+        </div>
+
+
+        {% if numNullValues > 0 %}
+
+        <div class="row">
+
+            <div class="col-sm-12" style="margin-top: 20px;">
+                <div class="alert alert-danger">
+                    <b>Warning:</b> the shape has {{ countGeometries }} geometries, so there {{ "is" if numNullValues == 1 else "are" }} {{ numNullValues }} entries in the "{{ columnName }}" column with null values. The visualization of these entries has to handled separately. Add the following condition in the cartoCSS editor ("main-style.mss").
+                </div>
+            </div>
+
+            <div class="col-sm-9">
+                <p style="margin-top: 15px; margin-bottom: 0px; "><b>1b) CartoCSS</b></p>
+            </div>
+            <div class="col-sm-3">
+
+                <button type="button" class="pull-right btn btn-block btn-default js-select-code" id="code-carto-1">
+                    Select  &nbsp;
+                    <span class="glyphicon glyphicon-copy"></span>
+                </button>
+            </div>
+
+            <div class="col-sm-12">
+                <pre style="margin-top: 4px;"><code id="js-carto-1" class="language-css">
+#{{ tableName }}["{{ columnName }}" = null] {
+    // now use the correct cartoCSS properties to identify null values
+    marker-fill: black;  // or line-color, or polygon-fill, etc
+}
+
+                </code></pre>
+            </div>
+
+        </div>
+
+
+        {% endif %}
+
+
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <p style="margin-top: 15px; margin-bottom: 0px; display: inline-block;"><b>2) HTML for the legend</b></p><span style="font-size: 90%;">&nbsp; (paste in the "Legends" settings)</span>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group" style="margin-top: 15px; margin-bottom: 0;">
+                   <label style="margin-bottom: 0;">Legend style:</label>
+
+                   <div class="radio" style="margin-top: 0;">
+                     <label>
+                       <input type="radio" name="legend-style" value="horizontal" {{"checked" if legendStyle == "horizontal" }}>
+                       Horizontal
+                     </label>
+                   </div>
+                   <div class="radio" style="margin-top: -10px;">
+                     <label>
+                       <input type="radio" name="legend-style" value="vertical" {{"checked" if legendStyle == "vertical" }}>
+                       Vertical
+                     </label>
+                   </div>
+                </div>
+            </div>
+
+            <div style="margin-top: -10px;" class="col-sm-offset-6 col-sm-3">
+                <button type="button" class="pull-right btn btn-block btn-default js-select-code" id="code-html-preview">
+                    Preview  &nbsp;
+                    <span class="glyphicon glyphicon glyphicon-eye-open"></span>
+                </button>
+            </div>
+            <div style="margin-top: -10px;" class="col-sm-3">
+                <button type="button" class="pull-right btn btn-block btn-default js-select-code" id="code-html">
+                    Select  &nbsp;
+                    <span class="glyphicon glyphicon-copy"></span>
+                    </button>        
+            </div>
+
+            <div class="col-sm-12">
+                <pre style="margin-top: 4px;"><code class="language-markup">
+                    {{ macros.getDefaultLegendHtml(scale, mapName, legendStyle) | trim | escape }}
+                </code></pre>
+            </div>
+
+        </div>
+
+
+ 
+
+        {% endif %}
+
+    </div>
+</div>

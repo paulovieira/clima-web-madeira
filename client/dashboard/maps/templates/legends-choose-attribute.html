@@ -1,0 +1,134 @@
+{% set separator = "&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;" %}
+
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1" style="padding-top: 20px;">
+        <p style="margin-bottom: 0px;"><b>Step 3:</b> choose the attribute</p>    
+        <span style="font-size: 90%;">These are the attributes available in the selected shape</span>
+
+        {# row for the descriptions (above the select elems) #}
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-sm-4">
+                Attribute:
+            </div>
+            <div class="col-sm-4">
+                Number of classes:
+            </div>
+            <div class="col-sm-4">
+                Color scheme:
+            </div>
+        </div>
+
+
+        {# row for the select elems #}
+        <div class="row" style="margin-top: 5px;">
+            <div class="col-sm-4">
+
+                <select class="form-control js-available-attributes">
+                    <option value="">&mdash;</option>
+
+                    {% for obj in items %}
+                        <option value="{{ obj['column_name'] }}" >{{ obj['column_name'] }}  ({{ obj['data_type'] }})</option>
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <div class="col-sm-4">
+
+                <select class="form-control js-number-classes" disabled>
+                    <option value="0">&mdash;</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+
+            <div class="col-sm-4">
+
+                <select class="form-control js-color-scheme"  disabled>
+                    <optgroup label="">
+                        <option value="">&mdash;</option>
+                    </optgroup>
+
+                    <optgroup label="Sequential (multi-hue)">
+                        <option value="BuGn"> BuGn (blue - green) </option>
+                        <option value="BuPu"> BuPu (blue - purple) </option>
+                        <option value="GnBu"> GnBu (green - blues </option>
+                        <option value="OrRd"> OrRd (orange - red) </option>
+                        <option value="PuBu"> PuBu (purple - blue) </option>
+                        <option value="PuBuGn"> PuBuGn (purple - blue - green) </option>
+
+                        <option value="separator1" disabled>{{ separator }}</option>
+
+                        <option value="PuRd"> PuRd (purple - red) </option>
+                        <option value="RdPu"> RdPu (red - purple) </option>
+                        <option value="YlGn"> YlGn (yellow - green) </option>
+                        <option value="YlGnBu"> YlGnBu (yellow - green - blue) </option>
+                        <option value="YlOrBr"> YlOrBr (yellow - orange - brown) </option>
+                        <option value="YlOrRd"> YlOrRd (yellow - orange - red) </option>
+
+                        <option value="empty1"  disabled></option>
+                    </optgroup>
+
+                    <optgroup label="Sequential (single hue)">
+                        <option value="Blues"> Blues </option>
+                        <option value="Greens"> Greens </option>
+                        <option value="Greys"> Greys </option>
+
+                        <option value="separator2" disabled>{{ separator }}</option>
+
+                        <option value="Oranges"> Oranges </option>
+                        <option value="Purples"> Purples </option>
+                        <option value="Reds"> Reds </option>
+                       
+                        <option value="empty2" disabled></option>               
+                    </optgroup>
+
+
+
+                    <optgroup label="Diverging">
+                        <option value="BrBG"> BrBG (brown - blue/green) </option>
+                        <option value="PiYG"> PiYG (pink - green) </option>
+                        <option value="PRGn"> PRGn (purple - green) </option>
+                        <option value="PuOr"> PuOr (orange - purple) </option>
+                        <option value="RdBu"> RdBu (red - blue) </option>
+                        <option value="RdGy"> RdGy (red - gray) </option>
+                        <option value="RdYlBu"> RdYlBu (red - yellow - blue) </option>
+                        <option value="RdYlGn"> RdYlGn (red - yellow - green) </option>
+                        <option value="Spectral"> Spectral </option>
+
+                        <option value="empty3" disabled></option>
+                    </optgroup>
+
+                    <optgroup label="Qualitative">
+                        <option value="Accent"> Accent </option>
+                        <option value="Dark2"> Dark2 </option>
+                        <option value="Paired"> Paired </option>
+                        <option value="Pastel1"> Pastel1 </option>
+                        <option value="Pastel2"> Pastel2 </option>
+                        <option value="RdGy"> RdGy </option>
+                        <option value="Set1"> Set1 </option>
+                        <option value="Set2"> Set2 </option>
+                        <option value="Set3"> Set3 </option>
+                    </optgroup>
+                </select>
+                <span style="font-size: 90%;">Taken from <a target="_blank" href="http://colorbrewer2.org/">colorbrewer2.org <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a></span>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="js-colors-region" style="margin-top: 20px;"></div>

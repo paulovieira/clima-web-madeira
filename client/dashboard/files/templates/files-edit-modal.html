@@ -1,0 +1,57 @@
+<div class="modal-header">
+    <h4 class="modal-title">Edit file #{{ id }}</h4>
+</div>
+
+
+<div class="modal-body">
+    <form>
+
+        <div class="form-group">
+            <label for="js-edit-files-tags">Tags</label>
+            <input type="text" id="js-edit-files-tags" class="form-control" name="edit-files-tags" value="{{ tags | join(', ') }}">
+        </div>
+
+        <div class="form-group">
+            <label for="js-edit-name">URL (internal)</label>
+            <input style="cursor: auto;" type="text" class="form-control" value="{{ webPath }}{{ name }}" disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="js-edit-name">URL (external)</label>
+            <input style="cursor: auto;" type="text" class="form-control" value="{{ publicUri }}{{ webPath }}{{ name }}" disabled>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <label>Owner</label>
+                    <input type="text" class="form-control" value="{{ ownerData.firstName }} {{ ownerData.lastName }}" disabled>
+                </div>  
+                
+            </div>
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <label>Uploaded at</label>
+                    <input type="text" class="form-control" value="{{ uploadedAt }}" disabled>
+                </div>
+              
+
+            </div>
+        </div>
+
+
+
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary js-modal-save">Gravar</button>
+    <button type="button" class="btn btn-default js-modal-cancel">Cancelar</button>
+
+    <div id="message-status" style="margin-top: 35px;"></div>
+    <div id="" style="margin-top: 10px;">
+        <h5 id="message-links"></h5>
+    </div>
+</div>

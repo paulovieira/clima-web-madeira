@@ -1,0 +1,141 @@
+<div class="modal-header">
+    <h4 class="modal-title">Edit map #{{ id }}</h4>
+</div>
+
+
+<div class="modal-body">
+
+
+    <form>
+
+        <div class="form-group">
+            <label for="js-edit-map-title-pt">Title (português)</label>
+            <input id="js-edit-map-title-pt" class="form-control" name="title[pt]" value="{{ title.pt }}">
+        </div>
+        <div class="form-group">
+            <label for="js-edit-map-title-en">Title (english)</label>
+            <input id="js-edit-map-title-en" class="form-control" name="title[en]" value="{{ title.en }}">
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <label for="js-edit-map-category">Map category</label>
+
+                    <select id="js-edit-map-category" name="categoryId" class="form-control">
+
+                    {% for obj in mapCategories %}
+                        <option value={{ obj.id }} {{ "selected" if obj.id == categoryId }}>
+                            {{ obj.contents.en }}
+                        </option>
+                    {% endfor %}
+                    
+                    </select>
+                </div>
+                
+            </div>
+            <div class="col-sm-6">
+              
+                <label>Code</label>
+                <input class="form-control" value="{{ code }}" disabled>
+
+            </div>
+        </div>
+
+
+
+        <hr>
+
+        <h4>Selected shapes (data source)</h4>
+
+        <div class="xtable-responsive">
+            <table class="table table-stripedx table-hover table-condensed table-dashboard">
+
+                <thead>
+                    <tr>
+                        <th style="width: 5%"></th>
+                        <th style="width: 15%">Shape id</th>
+                        <th style="width: 40%">Shape code</th>
+                        <th style="width: 15%">Shape srid</th>
+                        <th style="width: 25%">Owner</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for obj in allShapes %}
+                        <tr class="js-shape-row">
+                            <td><input type="checkbox" name="selectedShapes[{{ obj.id }}]" {{ "checked" if obj.isSelected == true }}></td>
+                            <td>{{ obj.id }}</td>
+                            <td>{{ obj.code }}</td>
+                            <td>{{ obj.srid }}</td>
+                            <td>{{ obj.ownerData.firstName }} {{ obj.ownerData.lastName }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+        
+
+
+        <hr>
+
+        <h4>Controls</h4>
+        
+
+{#
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Shape code</label>
+                    <input type="text" class="form-control" value="{{ code }}" disabled>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>SRID</label>
+                    <input type="text" class="form-control" value="{{ srid }}" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Original file</label>
+                    <input type="text" class="form-control" value="{{ fileData.name }}" disabled>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Created at</label>
+                    <input type="text" class="form-control" value="{{ createdAt }}" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Owner</label>
+            <input type="text" class="form-control" value="{{ ownerData.first_name }} {{ ownerData.last_name }}" disabled>
+        </div>
+#}
+    </form>
+
+    <div id="controls-region"></div>
+
+    <button type="button" class="btn btn-primary js-add-control">Add control</button>
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary js-modal-save">Gravar</button>
+    <button type="button" class="btn btn-default js-modal-cancel">Cancelar</button>
+
+    <div id="message-status" style="margin-top: 35px;"></div>
+    <div id="" style="margin-top: 10px;">
+        <h5 id="message-links"></h5>
+    </div>
+</div>

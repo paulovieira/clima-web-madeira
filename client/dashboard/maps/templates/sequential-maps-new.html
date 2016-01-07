@@ -1,0 +1,51 @@
+<div class="modal-header">
+    <h4 class="modal-title">New sequential map</h4>
+</div>
+
+
+<div class="modal-body">
+{#
+    <form>
+        <div class="form-group">
+            <label for="js-edit-text-pt">Português</label>
+            <textarea id="js-edit-text-pt" class="form-control" name="edit-text-pt" rows="3">{{ contents.pt }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="js-edit-text-en">Inglês</label>
+            <textarea  id="js-edit-text-en" class="form-control" name="edit-text-en" rows="3">{{ contents.en }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="js-edit-text-tags">Tags</label>
+            <input type="text" id="js-edit-text-tags" class="form-control" name="edit-text-tags" value="{{ tags | join(', ') }}">
+        </div>
+        <div class="form-group">
+            <label>id</label>
+            <input type="text" class="form-control" value="{{ id }}" disabled>
+        </div>
+        <div class="form-group">
+            <label>Last updated</label>
+            <input type="text" class="form-control" value="{{ lastUpdated }}" disabled>
+        </div>
+        <div class="form-group">
+            <label>Author (of the last update)</label>
+            <input type="text" class="form-control" value="{{ authorData.firstName }} {{ authorData.lastName }}" disabled>
+        </div>
+    </form>
+#}
+    sequential-maps-new 
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary js-modal-save">Save</button>
+    <button type="button" class="btn btn-default js-modal-cancel">Cancel</button>
+
+    <div id="message-status" style="margin-top: 35px;"></div>
+    <div id="" style="margin-top: 10px;">
+        <h5 id="message-links"></h5>
+    </div>
+</div>
+
+
+
+

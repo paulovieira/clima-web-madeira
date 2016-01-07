@@ -1,0 +1,25 @@
+<td>{{ id }}</td>
+
+<td>
+    {{ name }}
+</td>
+
+<td>
+	{{ webPath }}
+</td>
+
+<td>
+	{{ tags | join(', ') }}
+</td>
+
+<td>
+	{{ uploadedAtShort }}
+</td>
+{##}
+<td class="text-right">
+    <button class="btn btn-primary btn-xs js-edit"><span class="glyphicon glyphicon-pencil"></span>
+    </button>
+    <button class="btn btn-danger btn-xs js-delete"><span class="glyphicon glyphicon-trash"></span>
+    </button>
+</td>
+

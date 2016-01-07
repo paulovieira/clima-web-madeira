@@ -1,0 +1,281 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    xbackground-color: orange;
+}
+
+#main-container {
+    xbackground-color: red;
+    position: relative;
+    height: 100%;
+}
+
+#navbar-container {
+    xbackground-color: blue;
+    position: absolute;
+    top: 0px;
+    height: 52px;
+    width: 100%;
+}
+
+.navbar {
+    border-width: 1px 0px 1px 0px;
+    xborder-color: black;
+}
+
+/*
+instead of defining height on the map container, we set both top and bottom,
+thus obtaining the height implicitely (dinamically stretched vertically)
+NOTE: navbar height is 50px + 1px border top + 1px border bottom
+*/
+
+#map-container {
+    xbackground-color: green;
+    position: absolute;
+    top: 52px;
+    bottom: 20px;
+    width: 100%;
+}
+
+
+
+#map {
+    height: 100%;
+}
+
+#footer-container {
+    xbackground-color: yellow;
+    position: absolute;
+    bottom: 0px;
+    height: 20px;
+    border: 1px #e7e7e7 solid;
+    xborder-color: black;
+    border-width: 1px 0px 0px 0px;
+    width: 100%;
+}
+
+/*
+
+#main-region, #map {
+    height: 100%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: gray;
+}
+*/
+
+
+
+.file-drop-zone-title {
+    color: "#C7C4C4";
+    line-height: 30px;
+    font-size: 30px;
+    padding: 30px 10px;
+}
+
+
+.tile-switcher .tile-group-title {
+    font-size: 110%;
+    font-weight: bold;
+}
+.tile-switcher hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.selected-item {
+    font-weight: bold;
+    font-size: 105%;
+}
+
+.table-dashboard  {
+    table-layout: fixed;
+}
+
+.table-dashboard th, table td { overflow: hidden; }
+
+
+/*
+leaflet cursor 
+*/
+.leaflet-clickable {
+    cursor: auto;
+}
+.leaflet-container {
+    cursor: auto;
+    cursor: auto;
+}
+
+/*
+custom controls
+
+
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.1); }
+*/
+#menu-container {
+    font-size: 175%;
+    transition: all .15s ease;
+}
+
+#menu-container:hover {
+/*
+    transform: scale(1.1);
+*/
+}
+
+.main-control {
+
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    /*position: absolute;
+    height: 100%;*/
+
+}
+
+.info {
+/*
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+*/
+    padding: 6px 8px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    border-radius: 5px;
+}
+/*
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+*/
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 23px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.9;
+}
+
+/*
+bootstrap 3d buttons
+http://bootsnipp.com/snippets/featured/onvenient-buttons
+*/
+
+.btn {
+    border-radius: 0;
+    border: 0;
+    border-bottom: 4px solid #CCCCCC;
+    margin:0;
+    -webkit-box-shadow: 0 5px 5px -6px rgba(0,0,0,.3);
+       -moz-box-shadow: 0 5px 5px -6px rgba(0,0,0,.3);
+            box-shadow: 0 5px 5px -6px rgba(0,0,0,.3);
+}
+.btn .btn-block:active, .btn .btn-lg:active {
+    -webkit-box-shadow: inset 0 3px 3px -5px rgba(0,0,0,.3);
+       -moz-box-shadow: inset 0 3px 3px -5px rgba(0,0,0,.3);
+            box-shadow: inset 0 3px 3px -5px rgba(0,0,0,.3);
+}
+.btn-default {
+    color: #555;
+    background-color: #f9f9f9;
+    border-color: #cacaca;
+    text-shadow: 1px 1px 0 #f5f5f5;
+}
+.btn-default:hover, .btn-default:focus {
+    background-color: #f4f4f4;
+    border-color: #bebebe;
+}
+.btn-success {
+    background-color: #80d752;
+    border-color: #61be26;
+    text-shadow: 1px 1px 0 #5fdb34;
+}
+.btn-success:hover, .btn-success:focus {
+    background-color: #75cd53;
+    border-color: #53aa27;
+}
+.btn-info {
+    background-color: #39b3d7;
+    border-color: #348fd2;
+    text-shadow: 1px 1px 0 #238ed5;
+}
+.btn-info:hover, .btn-info:focus {
+    background-color: #45abcd;
+    border-color: #347abe;
+}
+.btn-warning {
+    background-color: #FEAF20;
+    border-color: #d79a34;
+    text-shadow: 1px 1px 0 #db9e34;
+}
+.btn-warning:hover, .btn-warning:focus {
+    background-color: #f5a620;
+    border-color: #cd9034;
+}
+.btn-danger {
+    background-color: #d73814;
+    border-color: #be0000;
+    text-shadow: 1px 1px 0 #ac2925;
+}
+.btn-danger:hover, .btn-danger:focus {
+    background-color: #cd3714;
+    border-color: #aa0000;
+}
+.btn-primary {
+    background-color: #4274d7;
+    border-color: #4d5bbe;
+    text-shadow: 1px 1px 0 #232bd5;
+}
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #426acd;
+    border-color: #4f56aa;
+}
+.btn-magick {
+    color: #fff;
+    background-color: #bb39d7;
+    border-color: #9a00cd;
+    text-shadow: 1px 1px 0 #9823d5;
+}
+.btn-magick:hover, .btn-magick:focus {
+    color: #fff;
+    background-color: #b13acd;
+    border-color: #8600b9;
+}
+.btn-pressure {
+    position: relative;
+    margin-bottom: 0;
+}
+.btn-pressure:focus {
+    -moz-outline-style:none;
+         outline:medium none;
+}
+.btn-pressure:active, .btn-pressure.active {
+    top: 4px;
+    border: 0;
+    position: relative;
+}
+.btn-sensitive:active, .btn-sensitive.active {
+    top: 1px;
+    margin-top: 4px;
+}

@@ -1,0 +1,256 @@
+
+{% macro getCartoCode(scale, tableName, columnName, geometryTypePrimitive, dataType) %}
+
+{% set cartoCode = "" %}
+
+{% for class in scale %}
+
+    {# BEGIN SELECTOR #}
+
+    {% if class.valueClass[0] != class.valueClass[1] %}
+
+        {% set cartoCode = cartoCode + 
+                        '#' + tableName + 
+                        '["' + columnName + '" >= ' + class.valueClass[0] + ']' +
+                        '["' + columnName + '" <= ' + class.valueClass[1] + ']{' + '\n'
+        %}
+    
+
+    {% else %}    
+        {% if dataType == "char" %}
+            {% if class.valueClass[0] == undefined %}
+
+                {% set cartoCode = cartoCode + 
+                                '#' + tableName + 
+                                '["' + columnName + '" = null]{' + '\n'
+                %}
+
+            {% else %}
+
+                {% set cartoCode = cartoCode + 
+                                '#' + tableName + 
+                                '["' + columnName + '" = "' + class.valueClass[0] + '"]{' + '\n'
+                %}
+
+            {% endif %}
+
+
+        {# if dataType is "int" or "real" #}
+        {% else %}  
+
+            {% set cartoCode = cartoCode + 
+                            '#' + tableName + 
+                            '["' + columnName + '" = ' + class.valueClass[0] + ']{' + '\n'
+            %}
+
+        {% endif %}
+
+
+    {% endif %}
+
+    {# BEGIN CARTO PROPERTY #}
+    {% if geometryTypePrimitive == "point" %}
+
+        {% set cartoCode = cartoCode + 
+                        "    marker-fill: " + class.colorHex + ";\n"
+        %}
+
+    {% elif geometryTypePrimitive == "linestring" %}
+
+        {% set cartoCode = cartoCode + 
+                        "    line-color: " + class.colorHex + ";\n"
+        %}
+
+    {% elif geometryTypePrimitive == "polygon" %}
+
+        {% set cartoCode = cartoCode + 
+                        "    polygon-fill: " + class.colorHex + ";\n"
+        %}
+        
+    {% else %}
+
+        {% set cartoCode = cartoCode + 
+                        "    /* one of these 3 should probably be commented */\n" +
+                        "    marker-fill: "  + class.colorHex + ";\n" +
+                        "    line-color: "   + class.colorHex + ";\n" +
+                        "    polygon-fill: " + class.colorHex + ";\n"
+        %}
+
+    {% endif %}
+
+    {# END SELECTOR #}
+
+    {% set cartoCode = cartoCode + "}\n\n"
+
+    %}
+{% endfor %}
+
+
+{# finally, output the string #}
+{{ cartoCode}}
+
+
+{% endmacro %}
+
+
+
+
+
+
+
+{% macro getDefaultLegendHtml(scale, mapName, legendStyle) %}
+
+{% 
+    set legendHtml = "<div class='my-legend'>\n" +
+                    "<div class='legend-title'>" + mapName + "</div>\n" +
+                    "<div class='legend-scale'>\n\n" + 
+                    "  <!--   BEGIN COLORS   |   BEGIN COLORS   |   BEGIN COLORS   -->\n" +
+                    "  <ul class='legend-labels'>\n"
+%}
+{% for class in scale %}
+
+    {# BEGIN LEGEND CLASS #}
+
+    {% if class.valueClass[0] != class.valueClass[1] %}
+
+        {% 
+            set legendHtml = legendHtml + 
+                    "    <li><span style='background:" + class.colorHex + ";'></span>\n" + 
+                    "            " +
+                    class.valueClass[0] + " &ndash; " + class.valueClass[1] + "\n" +
+                    "    </li>\n"
+        %}
+    
+
+    {% else %}    
+
+        {% 
+            set legendHtml = legendHtml + 
+                    "    <li><span style='background:" + class.colorHex + ";'></span>\n" + 
+                    "            " +
+                    class.valueClass[0] + "\n" +
+                    "    </li>\n"
+        %}
+
+    {% endif %}
+
+
+    {# END LEGEND CLASS #}
+
+{% endfor %}
+
+{% 
+    set legendHtml = legendHtml + 
+                    "  </ul>\n" +
+                    "  <!--   END COLORS   |   END COLORS   |   END COLORS   -->\n\n" +
+                    "</div>\n\n" +
+
+
+                    "<!--   BEGIN SOURCE   |   BEGIN SOURCE   |   BEGIN SOURCE   -->\n" +
+                    "<div class='legend-source'>\n" + 
+                    "  Source: <a href='#'>Source name</a>\n" + 
+                    "</div>\n" +
+                    "<!--   END SOURCE   |   END SOURCE   |   END SOURCE   -->\n\n" +
+                    "</div>\n\n" 
+%}
+
+{% if legendStyle == 'horizontal' %}
+
+    {% 
+        set legendCss = "
+<style type='text/css'>
+  .my-legend .legend-title {
+    text-align: left;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 90%;
+    }
+  .my-legend .legend-scale ul {
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;
+    }
+  .my-legend .legend-scale ul li {
+    display: block;
+    float: left;
+    width: 50px;
+    margin-bottom: 6px;
+    text-align: center;
+    font-size: 80%;
+    list-style: none;
+    }
+  .my-legend ul.legend-labels li span {
+    display: block;
+    float: left;
+    height: 15px;
+    width: 50px;
+    }
+  .my-legend .legend-source {
+    font-size: 70%;
+    color: #999;
+    clear: both;
+    }
+  .my-legend a {
+    color: #777;
+    }
+</style>"
+    %}
+
+{% elif legendStyle == 'vertical' %}
+
+{% 
+    set legendCss = "
+<style type='text/css'>
+  .my-legend .legend-title {
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 90%;
+    }
+  .my-legend .legend-scale ul {
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+    float: left;
+    list-style: none;
+    }
+  .my-legend .legend-scale ul li {
+    font-size: 80%;
+    list-style: none;
+    margin-left: 0;
+    line-height: 18px;
+    margin-bottom: 2px;
+    }
+  .my-legend ul.legend-labels li span {
+    display: block;
+    float: left;
+    height: 16px;
+    width: 30px;
+    margin-right: 5px;
+    margin-left: 0;
+    border: 1px solid #999;
+    }
+  .my-legend .legend-source {
+    font-size: 70%;
+    color: #999;
+    clear: both;
+    }
+  .my-legend a {
+    color: #777;
+    }
+</style>"
+    %}
+
+{% endif %}
+
+{% 
+    set legendHtml = legendHtml + legendCss
+%}
+
+{# finally, output the string #}
+{{ legendHtml }}
+
+{% endmacro %}
+
+

@@ -1,0 +1,217 @@
+<form class="form-horizontal">
+
+    <div class="tile-group-title">Base maps</div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="MapQuestOpen.OSM"> Mapquest Open
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="HERE.normalDayGrey"> HERE Maps
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles" value="HERE.satelliteDay"> HERE Satellite
+        </label>
+    </div>
+
+{#
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="BGRIBordersOnly"> Show BGRI borders
+        </label>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="rios"> rivers
+        </label>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="MapQuestOpen_HybridOverlay"> Show locations names
+        </label>
+    </div>
+    #}
+    <hr>
+
+
+    <div class="tile-group-title">Published maps</div>
+
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="new-map-3"> new-map-3
+        </label>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="new-map-4"> new-map-4
+        </label>
+    </div>
+
+{#
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="cirac_risk_algs_T500"> Flooded areas (Algés)
+        </label>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="cirac_risk_algs_structure"> Structure damage (Algés)
+        </label>
+    </div>
+
+
+    <hr>
+
+
+    <div class="tile-group-title">Flood Vulnerability Index</div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_bgri_FVI_N"> Flood Vulnerability Index by BGRI (mode)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_bgri_FVI_75"> Flood Vulnerability Index by BGRI (75 percentile)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_CP4_FVI"> Flood Vulnerability Index by CP4 (mode)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_CP4_FVI75"> Flood Vulnerability Index by CP4 (75 percentile)
+        </label>
+    </div>
+    <hr>
+
+
+    
+    <div class="tile-group-title">Combined Flood Vulnerability Index</div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_bgri_cfvi"> Combined Flood Vulnerability Index by BGRI (mode)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_bgri_cfvi75"> Combined Flood Vulnerability Index by BGRI (75 percentile)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_cp4_cfvi_mode"> Combined Flood Vulnerability Index by CP4 (mode)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_cp4_cfvi_75"> Combined Flood Vulnerability Index by CP4 (75 percentile)
+        </label>
+    </div>
+    <hr>
+
+
+    
+    <div class="tile-group-title">Exposure</div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_bgri_E"> Exposure by BGRI (mode)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_bgri_E75"> Exposure by BGRI (75 percentile)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_CP4_E"> Exposure by CP4 (mode)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_CP4_E75"> Exposure by CP4 (75 percentile)
+        </label>
+    </div>
+    <hr>
+
+
+    
+    <div class="tile-group-title">Physical Susceptibility</div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles" value="cirac_vul_bgri_SF"> Physical Susceptibility by BGRI (mode)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles" value="cirac_vul_bgri_SF75"> Physical Susceptibility by BGRI (75 percentile)
+        </label>
+    </div>
+
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles" value="cirac_vul_CP4_SF"> Physical Susceptibility by CP4 (mode)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles" value="cirac_vul_CP4_SF75"> Physical Susceptibility by CP4 (75 percentile)
+        </label>
+    </div>
+    <hr>
+
+    <div class="tile-group-title">Social Susceptibility</div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_bgri_SSI"> Social Susceptibility by BGRI (mode)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_bgri_SSI75"> Social Susceptibility by BGRI (75 percentile)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_CP4_SSI"> Social Susceptibility by CP4 (mode)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_CP4_SSI75"> Social Susceptibility by CP4 (75 percentile)
+        </label>
+    </div>
+    <hr>
+
+
+    <div class="tile-group-title">Precipitation Index</div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_bgri_TF"> Precipitation Index by BGRI (mode)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_bgri_TF75"> Precipitation Index by BGRI (75 percentile)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_CP4_TF"> Precipitation Index by CP4 (mode)
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="base-tiles"  value="cirac_vul_CP4_TF75"> Precipitation Index by CP4 (75 percentile)
+        </label>
+    </div>
+    <hr>
+#}
+
+</form>
+<hr>

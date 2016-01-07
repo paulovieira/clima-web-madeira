@@ -1,0 +1,102 @@
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-1" style="padding-top: 20px; margin-bottom: 30px;">
+
+        <h3 class="text-center">Personal data</h3>
+        <form>
+            <div class="form-group">
+                <label for="js-personal-first-name">First name</label>
+                <input type="text" id="js-personal-first-name" class="form-control" name="firstName" value="{{ firstName }}">
+            </div>
+            <div class="form-group">
+                <label for="js-personal-last-name">Last name</label>
+                <input type="text" id="js-personal-last-name" class="form-control" name="lastName" value="{{ lastName }}">
+            </div>
+            <div class="form-group">
+                <label for="js-personal-email">Email</label>
+                <input type="text" id="js-personal-email" class="form-control" name="email" value="{{ email }}">
+            </div>
+
+            <h3 class="text-center" style="margin-top: 50px;">Other general options</h3>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="showEnglish"  {{ "checked" if showEnglish }} {{ "disabled" if not userGroups.admin }}> English language is active
+                </label>
+            </div>
+
+        </form>
+
+
+
+
+        <div class="row" style="margin-top: 20px;">
+        	<div class="col-sm-6 col-sm-offset-3">
+            	<button type="button" class="btn btn-primary btn-block js-save">Save</button>
+            </div>
+        </div>
+        {#
+#}
+
+        <h3 class="text-center" style="margin-top: 50px;">Change password</h3>
+        <form>
+            <div class="form-group">
+                <label for="js-personal-current-pw">Current password</label>
+                <input type="password" id="js-personal-current-pw" class="form-control" name="currentPw">
+            </div>
+            <div class="form-group">
+                <label for="js-personal-new-pw">New password</label>
+                <input type="password" id="js-personal-new-pw" class="form-control" name="newPw">
+            </div>
+            <div class="form-group">
+                <label for="js-personal-new-pw-2">New password (again)</label>
+                <input type="password" id="js-personal-new-pw-2" class="form-control" name="newPw2">
+            </div>
+        </form>
+
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-sm-6 col-sm-offset-3">
+                <button type="button" class="btn btn-primary btn-block js-change-pw">Save new password</button>
+            </div>
+        </div>
+
+
+        <h3 class="text-center" style="margin-top: 50px;">User permissions</h3>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="js-edit-is-admin" {{ "checked" if userGroups.admin }} disabled> Is administrator 
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="js-edit-can-edit-texts" {{ "checked" if userGroups.canEditTexts or userGroups.admin }} disabled> Can edit/create texts
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="js-edit-can-delete-texts"  {{ "checked" if userGroups.canDeleteTexts or userGroups.admin }} disabled> Can delete texts
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="js-edit-can-edit-maps"  {{ "checked" if userGroups.canEditMaps or userGroups.admin }} disabled> Can edit/create maps
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="js-edit-can-delete-maps"  {{ "checked" if userGroups.canDeleteMaps or userGroups.admin }} disabled> Can delete maps
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="js-edit-can-edit-files"  {{ "checked" if userGroups.canEditFiles or userGroups.admin }} disabled> Can edit/upload files
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="js-edit-can-delete-files"  {{ "checked" if userGroups.canDeleteFiles or userGroups.admin }} disabled> Can delete files
+            </label>
+        </div>
+
+
+
+    </div>
+</div>

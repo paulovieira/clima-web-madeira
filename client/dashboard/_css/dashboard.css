@@ -1,0 +1,56 @@
+.selected-item {
+	font-weight: bold;
+	font-size: 105%;
+}
+
+.table-dashboard  {
+	table-layout: fixed;
+}
+
+
+.table-dashboard th, table td { overflow: hidden; }
+
+
+
+/* css for the jquery-sortable plugin */
+
+body.dragging,
+body.dragging * {
+    cursor: move !important;
+}
+
+.dragged {
+    position: absolute;
+    opacity: 0.9;
+    z-index: 9000;
+}
+
+.file-drop-zone {
+	border-color: #C3C3C3;
+}
+
+.file-drop-zone-title {
+	margin-top: 35px;
+	margin-bottom: 35px;
+    color: "#C7C4C4";
+    line-height: 30px;
+    font-size: 25px;
+    padding: 30px 10px;
+}
+
+
+/* css for the bootstrap-colorpicker plugin */
+
+.colorpicker-2x .colorpicker-saturation {
+    width: 150px;
+    height: 150px;
+}
+.colorpicker-2x .colorpicker-hue,
+.colorpicker-2x .colorpicker-alpha {
+    width: 30px;
+    height: 150px;
+}
+.colorpicker-2x .colorpicker-color,
+.colorpicker-2x .colorpicker-color div{
+    height: 30px;
+}

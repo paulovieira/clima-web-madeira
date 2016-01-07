@@ -1,0 +1,13 @@
+.is-editable {
+	outline: 1px dashed #329932; 
+}
+
+.is-editable:hover {
+    outline: 2px dashed #287a28; 
+}
+
+.note-editor {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	margin-bottom: 12px;
+}

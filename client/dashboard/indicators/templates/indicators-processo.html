@@ -1,0 +1,91 @@
+<div style="margin-top: 20px;">   </div>
+
+<p style="font-size: 115%; font-weight: bold; color: #868686;">Fase 1 - Estruturar o problema</p>
+
+
+{% for obj in faseUm %}
+
+<div>
+    <b>Indicador {{ obj.indicatorId }}:</b>
+    {{ obj.description }}
+
+    <form>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Concretizado
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="ip-{{ obj.indicatorId }}">Observações</label>
+            <textarea id="ip-{{ obj.indicatorId }}" class="form-control" rows="2"></textarea>
+        </div>
+    </form>
+
+    <hr>
+
+</div>
+  
+{% endfor %}
+
+
+<p style="font-size: 115%; font-weight: bold; color: #868686; margin-top: 25px;">Fase 2 - Avaliar soluções</p>
+
+
+{% for obj in faseDois %}
+
+<div>
+    <b>Indicador {{ obj.indicatorId }}:</b>
+    {{ obj.description }}
+
+    <form>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Concretizado
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="ip-{{ obj.indicatorId }}">Observações</label>
+            <textarea id="ip-{{ obj.indicatorId }}" class="form-control" rows="2"></textarea>
+        </div>
+    </form>
+
+    <hr>
+
+</div>
+  
+{% endfor %}
+
+
+<p style="font-size: 115%; font-weight: bold;  color: #868686; margin-top: 25px;">Fase 3 - Implementar e monitorizar</p>
+
+{% for obj in faseTres %}
+
+<div>
+    <b>Indicador {{ obj.indicatorId }}:</b>
+    {{ obj.description }}
+
+    <form>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Concretizado
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="ip-{{ obj.indicatorId }}">Observações</label>
+            <textarea id="ip-{{ obj.indicatorId }}" class="form-control" rows="2"></textarea>
+        </div>
+    </form>
+
+    <hr>
+
+</div>
+  
+{% endfor %}
+
+<div class="col-sm-6 col-sm-offset-3">
+    <button type="button" class="btn btn-primary btn-block"  disabled>Gravar</button>
+</div>
+

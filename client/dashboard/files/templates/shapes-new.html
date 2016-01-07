@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1" style="padding-top: 10px;">
+
+
+        <p>Create a .zip archive with the shape files (.shp, .prj, .shx and .dbf) and upload it. Currently only 1 shape per zip is allowed.</p>
+
+        <div class="radio">
+          <label>
+            <input type="radio" name="new-shape-or-raster"  value="shape" checked>
+            Shape
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="new-shape-or-raster"  value="raster" disabled>
+            Raster
+          </label>
+        </div>
+
+<!--         <form method="post" action="/api/files" enctype="multipart/form-data"> -->
+		<form enctype="multipart/form-data">
+
+			 <div class="form-group">
+                 <label for="new_file" style="margin-top: 15px;">New shape or raster</label> 
+				<input id="new_file" name="new_file" type="file" multiple=false class="file">
+			</div>
+
+        </form>
+
+        <div class="row">
+
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label for="js-new-shape-srid">SRID (projection identifier)</label>
+                    <input type="text" id="js-new-shape-srid" class="form-control" name="from-srid" value="4326">
+                </div>
+            </div>
+            <div class="col-sm-7" style="font-size: small;">
+            <b>Note:</b> you can check the SRID by opening the shapefile in QGIS or ArcGis. After the upload the geometries will be automatically converted to EPSG:4326 (if it isn't already).
+            </div>
+
+        </div>
+        <div class="row">    
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="js-new-shape-desc">Shape description</label>
+                    <textarea id="js-new-shape-desc"  name="shape-description" class="form-control" rows="2"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">    
+            <div class="col-sm-12">
+                <label for="new-file-tags" style="margin-top: 0px;">Tags (use a comma to separate)</label>
+                <input type="text" id="new-file-tags" class="form-control" name="new-file-tags">
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+

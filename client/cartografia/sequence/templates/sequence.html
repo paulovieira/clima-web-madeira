@@ -1,0 +1,15 @@
+
+<div class="btn-group">
+	<button type="button" class="btn btn-default js-play-seq"  title="clique iniciar a sequencia"><i class="fa fa-play"></i></button>
+	<button type="button" class="btn btn-default js-stop-seq"  title="clique parar a sequencia"><i class="fa fa-stop"></i></button>
+</div>
+
+<div class="btn-group">
+
+	{% for seqObj in items %}
+	<button type="button" class="btn btn-default js-select-layer-seq" data-map-id={{ seqObj.mapId }} data-map-index={{ seqObj.mapIndex }} title="clique para ver este mapa">{{ seqObj.seqName }}</button>
+	{% endfor %}
+
+</div>
+
+

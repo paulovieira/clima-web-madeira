@@ -1,0 +1,132 @@
+{% import "nunjucks-macros.html" as macros %}
+{% set numNullValues = countGeometries - count %} 
+
+
+
+<div class="row" style="padding-left: 15px; padding-right: 15px;">
+    <div class="col-sm-10 col-sm-offset-1" style="border-style:solid; border-radius: px; border-width: 1px; border-color: rgb(228, 228, 228);   padding: 20px 40px; margin-bottom: 50px; ">
+
+        {% if scale != false %}
+
+        <p>
+            Copy-paste the following two blocks to the 
+            <a target="_blank" href="/pt/tilemill#/project/{{ mapId }}">
+                {{ mapName }} 
+                <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+            </a> 
+            map settings:
+        </p>
+
+
+        <div class="row">
+        
+            <div class="col-sm-9">
+                <p style="margin-top: 15px; margin-bottom: 0px; display: inline-block;"><b>1) CartoCSS</b></p><span style="font-size: 90%;">&nbsp; (paste at the bottom of the "main-style.mss" settings)</span>
+            </div>
+            <div class="col-sm-3">
+                <button type="button" class="pull-right btn btn-block btn-default js-select-code" id="code-carto-0">
+                    Select  &nbsp;
+                    <span class="glyphicon glyphicon-copy"></span>
+                </button>
+            </div>
+
+            <div class="col-sm-12">
+                <pre style="margin-top: 4px;"><code id="js-carto-0" class="language-css">
+                    {{ macros.getCartoCode(scale, tableName, columnName, geometryTypePrimitive, dataType) | trim }}
+                </code></pre>
+            </div>
+
+        </div>
+
+
+        {% if numNullValues > 0 %}
+
+        <div class="row">
+
+            <div class="col-sm-12" style="margin-top: 20px;">
+                <div class="alert alert-danger">
+                    <b>Warning:</b> the shape has {{ countGeometries }} geometries, so there {{ "is" if numNullValues == 1 else "are" }} {{ numNullValues }} entries in the "{{ columnName }}" column with null values. The visualization of these entries has to handled separately. Add the following condition in the cartoCSS editor ("main-style.mss").
+                </div>
+            </div>
+
+            <div class="col-sm-9">
+                <p style="margin-top: 15px; margin-bottom: 0px; "><b>1b) CartoCSS</b></p>
+            </div>
+            <div class="col-sm-3">
+
+                <button type="button" class="pull-right btn btn-block btn-default js-select-code" id="code-carto-1">
+                    Select  &nbsp;
+                    <span class="glyphicon glyphicon-copy"></span>
+                </button>
+            </div>
+
+            <div class="col-sm-12">
+                <pre style="margin-top: 4px;"><code id="js-carto-1" class="language-css">
+#{{ tableName }}["{{ columnName }}" = null] {
+    // now use the correct cartoCSS properties to identify null values
+    marker-fill: black;  // or line-color, or polygon-fill, etc
+}
+
+                </code></pre>
+            </div>
+
+        </div>
+
+
+        {% endif %}
+
+
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <p style="margin-top: 15px; margin-bottom: 0px; display: inline-block;"><b>2) HTML for the legend</b></p><span style="font-size: 90%;">&nbsp; (paste in the "Legends" settings)</span>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group" style="margin-top: 15px; margin-bottom: 0;">
+                   <label style="margin-bottom: 0;">Legend style:</label>
+
+                   <div class="radio" style="margin-top: 0;">
+                     <label>
+                       <input type="radio" name="legend-style" value="horizontal" {{"checked" if legendStyle == "horizontal" }}>
+                       Horizontal
+                     </label>
+                   </div>
+                   <div class="radio" style="margin-top: -10px;">
+                     <label>
+                       <input type="radio" name="legend-style" value="vertical" {{"checked" if legendStyle == "vertical" }}>
+                       Vertical
+                     </label>
+                   </div>
+                </div>
+            </div>
+
+            <div style="margin-top: -10px;" class="col-sm-offset-6 col-sm-3">
+                <button type="button" class="pull-right btn btn-block btn-default js-select-code" id="code-html-preview">
+                    Preview  &nbsp;
+                    <span class="glyphicon glyphicon glyphicon-eye-open"></span>
+                </button>
+            </div>
+            <div style="margin-top: -10px;" class="col-sm-3">
+                <button type="button" class="pull-right btn btn-block btn-default js-select-code" id="code-html">
+                    Select  &nbsp;
+                    <span class="glyphicon glyphicon-copy"></span>
+                    </button>        
+            </div>
+
+            <div class="col-sm-12">
+                <pre style="margin-top: 4px;"><code class="language-markup">
+                    {{ macros.getDefaultLegendHtml(scale, mapName, legendStyle) | trim | escape }}
+                </code></pre>
+            </div>
+
+        </div>
+
+
+ 
+
+        {% endif %}
+
+    </div>
+</div>

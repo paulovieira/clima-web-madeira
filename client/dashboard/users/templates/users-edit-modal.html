@@ -1,0 +1,82 @@
+<div class="modal-header">
+    <h4 class="modal-title">Edit user #{{ id }}</h4>
+</div>
+
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="js-edit-user-first-name">First Name</label>
+            <input type="text" id="js-edit-user-first-name" class="form-control" name="syphon-user-first-name" value="{{ firstName }}">
+        </div>
+        <div class="form-group">
+            <label for="js-user-last-name">Last Name</label>
+            <input type="text" id="js-user-last-name" class="form-control" name="syphon-user-last-name" value="{{ lastName }}">
+        </div>
+        <div class="form-group">
+            <label for="js-edit-user-email">Email</label>
+            <input type="text" id="js-edit-user-email" class="form-control" name="syphon-user-email" value="{{ email }}">
+        </div>
+
+        <div class="form-group">
+            <label>Permissions</label>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="js-edit-is-admin" name="syphon-is-admin" {{ "checked" if userGroups.admin }} {{ "disabled" if sessionUserId == id or not sessionIsAdmin }}> Is administrator 
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="js-edit-can-edit-texts" name="syphon-can-edit-texts" {{ "checked" if userGroups.canEditTexts or userGroups.admin }} {{ "disabled" if sessionUserId == id or not sessionIsAdmin }}> Can edit/create texts
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="js-edit-can-delete-texts" name="syphon-can-delete-texts" {{ "checked" if userGroups.canDeleteTexts or userGroups.admin }} {{ "disabled" if sessionUserId == id or not sessionIsAdmin }}> Can delete texts
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="js-edit-can-edit-maps" name="syphon-can-edit-maps" {{ "checked" if userGroups.canEditMaps or userGroups.admin }} {{ "disabled" if sessionUserId == id or not sessionIsAdmin }}> Can edit/create maps
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="js-edit-can-delete-maps" name="syphon-can-delete-maps" {{ "checked" if userGroups.canDeleteMaps or userGroups.admin }} {{ "disabled" if sessionUserId == id or not sessionIsAdmin }}> Can delete maps
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="js-edit-can-edit-files" name="syphon-can-edit-files" {{ "checked" if userGroups.canEditFiles or userGroups.admin }} {{ "disabled" if sessionUserId == id or not sessionIsAdmin }}> Can edit/upload files
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="js-edit-can-delete-files" name="syphon-can-delete-files" {{ "checked" if userGroups.canDeleteFiles or userGroups.admin }} {{ "disabled" if sessionUserId == id or not sessionIsAdmin }}> Can delete files
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>id</label>
+                    <input type="text" class="form-control" value="{{ id }}" disabled>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Created At</label>
+                    <input type="text" class="form-control" value="{{ createdAt }}" disabled>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary js-modal-save">Gravar</button>
+    <button type="button" class="btn btn-default js-modal-cancel">Cancelar</button>
+    <div id="message-status" style="margin-top: 35px;"></div>
+    <div id="" style="margin-top: 10px;">
+        <h5 id="message-links"></h5>
+    </div>
+</div>

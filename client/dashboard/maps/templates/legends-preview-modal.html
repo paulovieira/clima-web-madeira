@@ -1,0 +1,19 @@
+{% import "nunjucks-macros.html" as macros %}
+
+<div class="modal-header">
+    <h4 class="modal-title">Preview legend for map {{ mapName }}</h4>
+</div>
+
+<div class="modal-body">
+	<div class="row">
+		<div style="margin-top: 40px; margin-bottom: 40px; border: 1px solid;" class="col-sm-offset-3 col-sm-6" >
+
+			{{ macros.getDefaultLegendHtml(scale, mapName, legendStyle)  }}
+
+		</div>	
+	</div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default js-modal-cancel">Close</button>
+</div>

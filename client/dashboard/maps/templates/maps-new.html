@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1" style="padding-top: 20px;">
+
+        <form style="margin-top: 20px;">
+
+            <div class="form-group">
+                <label for="js-new-map-name">Map name</label>
+                <input type="text" id="js-new-map-name" class="form-control" name="name" >
+            </div>
+
+            <div class="form-group">
+                <label for="js-new-map-desc">Map description</label>
+                <textarea id="js-new-map-desc" class="form-control" rows="3" name="description"></textarea>
+            </div>
+
+            <div class="form-group">
+
+                <label for="js-new-map-name">Center map around</label>
+                <div class="radio" style="margin-top: 0;">
+                  <label>
+                    <input type="radio" name="center"  value="madeira" checked>
+                    Madeira
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="center"  value="azores">
+                    Azores
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="center"  value="mainland">
+                    Mainland Portugal
+                  </label>
+                </div>
+            </div> 
+
+        </form>
+
+           
+
+
+        <div class="row" style="margin-top: 20px; margin-bottom: 40px;">
+        	<div class="col-sm-6 col-sm-offset-3">
+            	<button type="button" class="btn btn-primary btn-block js-save-map">Create map</button>
+            </div>
+
+            <div class="col-sm-6 col-sm-offset-3" id="new-map-container" style="display: none; margin-top: 10px;">
+                <p class="text-center" style="margin-bottom: 3px;">The new map was created!</p>
+                <a href="" target="_blank" style="" class="btn btn-success btn-block js-edit-map" role="button">Start editing!</a>
+            </div>
+        </div>
+
+    </div>
+</div>

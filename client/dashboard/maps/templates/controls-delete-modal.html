@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h4 class="modal-title">Delete confirmation</h4>
+</div>
+
+
+<div class="modal-body">
+
+	<p>Are you sure you want to delete this control?</p>
+{#
+	<div class="form-group" style="margin-top: 20px;">
+	    <label >Description (english)</label>
+	    <input class="form-control" value="{{ description.en }}" disabled>
+	</div>
+	<div class="form-group">
+	    <label >Description (portuguese)</label>
+	    <input class="form-control" value="{{ description.pt }}" disabled>
+	</div>
+#}
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger js-modal-delete">Yes</button>
+    <button type="button" class="btn btn-default js-modal-cancel">Cancel</button>
+
+
+    <div id="message-status" style="margin-top: 35px;"></div>
+    <div id="" style="margin-top: 10px;">
+        <h5 id="message-links"></h5>
+    </div>
+</div>
+

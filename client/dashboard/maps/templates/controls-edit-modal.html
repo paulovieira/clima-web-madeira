@@ -1,0 +1,94 @@
+<div class="modal-header">
+    <h4 class="modal-title">Edit control #{{ id }}</h4>
+</div>
+
+
+<div class="modal-body">
+
+    <form>
+
+        <div class="form-group">
+            <label for="js-select-period">Select the period</label>
+            <select id="js-select-period" name="period" class="form-control">
+                <option value="none"      {{ "selected" if period == "none" }}      >None</option>
+                <option value="reference" {{ "selected" if period == "reference" }} >Reference</option>
+                <option value="short"     {{ "selected" if period == "short" }}     >Short</option>
+                <option value="medium"    {{ "selected" if period == "medium" }}    >Medium</option>
+                <option value="long"      {{ "selected" if period == "long" }}      >Long</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="js-select-play-btn">Show play button in this control (<span class="glyphicon glyphicon-play" aria-hidden="true"></span>)</label>
+            <select id="js-select-play-btn" name="showPlayButton" class="form-control">
+                <option value="false" {{ "selected" if showPlayButton == false}} >No</option>
+                <option value="true"  {{ "selected" if showPlayButton == true }} >Yes</option>
+            </select>
+        </div>
+
+
+        <h4>Data columns</h4>
+
+        <p>Choose the columns to be used for this control</p>
+
+        {% for shapeObj in selectedShapes %}
+
+        <strong>Shape #{{ loop.index }}</strong> (code: {{ shapeObj.code }})
+    
+        <div class="xtable-responsive">
+            <table class="table table-condensedx table-hover table-dashboard">
+
+                <thead>
+                    <tr>
+                        <th style="width: 10%"></th>
+                        <th style="width: 30%">Column name</th>
+                        <th style="width: 30%">Column type</th>
+                        <th style="width: 30%">Public name</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for column in shapeObj.attributesInfo %}
+                        <tr class="js-shape-row">
+
+                            <td>
+                                <input type="checkbox" name="{{ shapeObj.id }}[{{ column.column_number }}][isSelected]" {{ "checked" if column.isSelected == true }} >
+                            </td>
+
+                            <td class="xjs-file-id">
+                                {{ column.column_name }}
+                            </td>
+
+                            <td>
+                                {{ column.data_type }}
+                            </td>
+                            
+                            <td>
+                                <input type="text" name="{{ shapeObj.id }}[{{ column.column_number }}][publicName]" value="{{ column.publicName }}">
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+        <hr>
+
+        {% endfor %}
+
+    </form>
+
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-info js-modal-apply">Apply</button>
+    <button type="button" class="btn btn-default js-modal-close">Close</button>  
+
+    <div id="message-status" style="margin-top: 35px;"></div>
+    <div id="" style="margin-top: 10px;">
+        <h5 id="message-links"></h5>
+    </div>
+</div>

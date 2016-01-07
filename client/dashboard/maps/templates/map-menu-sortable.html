@@ -1,0 +1,97 @@
+<ul class="list-group" data-items-type="map-group">
+
+    {% for obj in items %}
+
+    <li class="list-group-item map-menu-group" data-group-name="{{ obj['groupName'] }}">
+
+        {% if mode == "groups" %}
+        <i class="fa fa-arrows" style="margin-right: 10px; " data-items-type="map-group"></i>
+        {% endif %}
+
+        <b>{{ obj['groupName'] }}</b>
+
+        {% if obj['groupName'] != 'not published' %}
+        <i class="fa fa-trash" style="cursor: pointer; float: right; margin-right: 6px; color: #990000;" ></i>
+        {% endif %}
+
+        <ul class="list-group" style="margin-bottom: 15px;" data-items-type="map-item">
+
+            {% for obj2 in obj['maps'] %}
+
+                <li class="list-group-item" data-map-id="{{ obj2['mapId'] }}" >
+                    {% if mode == "maps" %}
+                    <i class="fa fa-arrows" style="margin-right: 10px;" data-items-type="map-item"></i>
+                    {% endif %}
+
+                    {{ obj2['mapId'] }}
+                </li>
+                
+
+            {% endfor %}                    
+
+        </ul>
+
+    </li>
+
+    {% endfor %}
+</ul>
+
+
+{#
+
+the data-items-type attribute should be present in all <ul>'s and defines the nature of the direct <li>'s
+(that is, it defines what the <li> representing); it can be of 2 kinds:
+
+a) the <li> represents a group of maps (value must be "map-group"); this means the <li> has a nested <ul> as a children
+b) the <li> reprensets a map (value must be a "map-item")
+
+NOTE: list-group and list-group-item are bootstrap classes
+
+#}
+
+{#
+        <ul class="list-group" data-items-type="map-group">
+            <li class="list-group-item map-menu-group" data-group-name="Published maps">
+                <i class="fa fa-arrows" style="margin-right: 10px; display: none;" data-items-type="map-group"></i>
+                <b>Published maps</b>
+                <ul class="list-group" style="margin-bottom: 15px;" data-items-type="map-item">
+                    <li class="list-group-item" data-map-id="a" >
+                        <i class="fa fa-arrows" style="margin-right: 10px; display: none;" data-items-type="map-item"></i>
+                        a
+                    </li>
+                    <li class="list-group-item" data-map-id="b" >
+                        <i class="fa fa-arrows" style="margin-right: 10px; display: none;" data-items-type="map-item"></i>
+                        b
+                    </li>
+                    <li class="list-group-item" data-map-id="c" >
+                        <i class="fa fa-arrows" style="margin-right: 10px; display: none;" data-items-type="map-item"></i>
+                        c
+                    </li>
+                </ul>
+
+            </li>
+
+            <li class="list-group-item map-menu-group" data-group-name="Unpublished maps">
+                <b>Unpublished maps</b>
+                                
+                <ul class="list-group" style="margin-bottom: 15px;" data-items-type="map-item">
+                    <li class="list-group-item" data-map-id="d" >d</li>
+                    <li class="list-group-item" data-map-id="e" >e</li>
+                </ul>
+
+            </li>
+
+            <li class="list-group-item map-menu-group" data-group-name="3rd group">
+                <b>3rd group</b>
+                                
+                <ul class="list-group" style="margin-bottom: 15px;" data-items-type="map-item">
+                    <li class="list-group-item" data-map-id="f" >f</li>
+                    <li class="list-group-item" data-map-id="g" >g</li>
+                </ul>
+
+            </li>
+
+
+
+        </ul>
+#}

@@ -1,0 +1,40 @@
+<div style="margin-top: 20px;">   </div>
+
+{% for key, val in ctx %}
+
+    <p style="font-size: 115%; font-weight: bold; color: #868686;">{{ key }}</p>
+    {% for obj in val %}
+
+        <div>
+            <b>Indicador:</b>
+            {{ obj.description }}
+
+            <div class="row">
+                <div class="col-sm-5">
+                    {% include "indicators/templates/indicadores-conteudo-table.html" %}
+                </div>
+                <div class="col-sm-7">
+                <form>
+
+                    <div class="form-group">
+                        <label for="ip-{{ obj.indicatorId }}">Observações</label>
+                        <textarea id="ip-{{ obj.indicatorId }}" class="form-control" rows="3"></textarea>
+                    </div>
+                </form>
+                </div>
+            </div>
+
+
+
+            <hr>
+
+        </div>
+
+    {% endfor %}  
+
+{% endfor %}
+
+<div class="col-sm-6 col-sm-offset-3">
+    <button type="button" class="btn btn-primary btn-block" disabled>Gravar</button>
+</div>
+

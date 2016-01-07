@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1" style="padding-top: 10px;">
+
+
+<!--         <form method="post" action="/api/files" enctype="multipart/form-data"> -->
+		<form enctype="multipart/form-data">
+
+			 <div class="form-group">
+                 <label for="new_file" style="margin-top: 15px;">New file</label> 
+				<input id="new_file" name="new_file" type="file" multiple=false class="file">
+
+                <label for="new-file-tags" style="margin-top: 30px;">Tags (use a comma to separate)</label>
+                <input type="text" id="new-file-tags" class="form-control" name="new-file-tags">
+			</div>
+
+            <hr>
+{#
+                                <div class="row" style="margin-top: 20px;">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="js-is-shape">Is shape file</label>
+                                            <select id="js-is-shape" class="form-control">
+                                                <option value="false" selected>No</option>
+                                                <option value="true">Yes</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div id="shape-fields-region" class="col-sm-9">
+                                    </div>
+
+                                </div>
+#}
+        </form>
+
+
+    </div>
+</div>
+
