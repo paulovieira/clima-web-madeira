@@ -1,8 +1,11 @@
+var Path = require("path");
 var Url = require("url");
 var Hoek = require("hoek");
 var Config = require("config");
 var Boom = require("boom");
-var Utils = require("../common/utils");
+
+var rootDir = require('config').get("rootDir");
+var Utils = require(Path.join(rootDir, "lib/common/utils"));
 
 
 var internals = {};

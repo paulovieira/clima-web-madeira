@@ -1,12 +1,14 @@
+var Path = require("path");
 var Hoek = require("hoek");
 var Config = require("config");
 var Bcrypt = require("bcrypt");
 var UUID = require('node-uuid');
 var _ = require("underscore");
-var Utils = require("../common/utils");
-//var CommonConfig = require("./common-config");
-var Validate = require("../common/validate");
-var Pre = require("../common/prerequisites");
+
+var rootDir = require('config').get("rootDir");
+var Utils = require(Path.join(rootDir, "lib/common/utils"));
+var Validate = require(Path.join(rootDir, "lib/common/validate"));
+var Pre = require(Path.join(rootDir, "lib/common/prerequisites"));
 
 
 var internals = {};
